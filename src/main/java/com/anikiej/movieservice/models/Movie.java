@@ -1,11 +1,17 @@
 package com.anikiej.movieservice.models;
 
+import jakarta.persistence.*;
 
+@Entity(name = "Movies")
 public class Movie {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @Enumerated(EnumType.STRING)
     private Category category;
     private int yearReleased;
+    private boolean isAvailable = false;
 
     public Movie() {
     }
@@ -53,6 +59,14 @@ public class Movie {
 
     public void setYearReleased(int year_released) {
         this.yearReleased = year_released;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
     }
 
     @Override
